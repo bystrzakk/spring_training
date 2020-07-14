@@ -2,7 +2,7 @@ package test.demo.spring.core.person;
 
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("umbrella")
 public class BackPack implements Item{
 
     private int capacity = 2;

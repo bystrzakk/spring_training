@@ -10,7 +10,6 @@ import org.springframework.test.context.support.AnnotationConfigContextLoader;
 import test.demo.spring.core.Application;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @TestPropertySource(locations = "classpath:application-test.yml")
@@ -23,10 +22,10 @@ public class PersonTest {
     @Test
     public void testSampleService() {
         //given
-        final int expectedResult = 2;
+        final String expectedResult = "parasol";
         //when
         //then
         assertEquals("Kamil", person.getName());
-        assertTrue(expectedResult == person.getBackPackCapactiy());
+        assertEquals(expectedResult, person.getItemName());
     }
 }

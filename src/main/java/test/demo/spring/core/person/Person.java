@@ -1,6 +1,7 @@
 package test.demo.spring.core.person;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -9,7 +10,7 @@ public class Person {
 
     private String name;
     private String surname;
-    private BackPack backPack;
+    private Item item;
 
     public void setName(String name) {
         this.name = name;
@@ -22,10 +23,10 @@ public class Person {
     @Autowired
     public Person(@Value("${test.name:Lukasz}") String name,
                   @Value("${test.surname:Nowak}") String surname,
-                  BackPack backPack) {
+                  @Qualifier(value = "umbrella") Item item) {
         this.name = name;
         this.surname = surname;
-        this.backPack = backPack;
+        this.item = item;
     }
 
     public String getName() {
@@ -36,16 +37,14 @@ public class Person {
         return surname;
     }
 
-    public Integer getBackPackCapactiy() {
-        return this.backPack.getCapacity();
+    public String getItemName() {
+        return this.item.getName();
     }
 
     @Override
     public String toString() {
         return "Person{" +
                 "name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-//                " backpack = " + backPack.getCapacity() +
-                '}';
+                ", surname='" + surname + '}';
     }
 }

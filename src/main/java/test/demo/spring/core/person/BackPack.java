@@ -3,9 +3,10 @@ package test.demo.spring.core.person;
 import org.springframework.stereotype.Component;
 
 @Component
-public class BackPack {
+public class BackPack implements Item{
 
     private int capacity = 2;
+    private String name = "plecak";
 
     public int getCapacity() {
         return capacity;
@@ -13,5 +14,9 @@ public class BackPack {
 
     public void setCapacity(int capacity) {
         this.capacity = capacity;
+    }
+
+    public String getName() {
+        return name;
     }
 }

@@ -5,6 +5,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class BackPack {
 
+    /*public BackPack(int capacity) {
+        this.capacity = capacity;
+    }*/
+
     private int capacity = 2;
 
     public int getCapacity() {

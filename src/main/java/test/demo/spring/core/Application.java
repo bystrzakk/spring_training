@@ -7,4 +7,9 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan
 public class Application {
 
+    /*@Bean
+    public BackPack createBackPack(){
+        return new BackPack(2);
+    }*/
+
 }

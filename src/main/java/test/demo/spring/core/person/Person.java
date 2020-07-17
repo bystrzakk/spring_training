@@ -1,6 +1,5 @@
 package test.demo.spring.core.person;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -20,7 +19,7 @@ public class Person {
         this.surname = surname;
     }
 
-    @Autowired
+    //@Autowired
     public Person(@Value("${test.name:Lukasz}") String name,
                   @Value("${test.surname:Nowak}") String surname,
                   BackPack backPack) {

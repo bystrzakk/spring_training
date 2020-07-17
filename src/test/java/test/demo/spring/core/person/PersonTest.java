@@ -20,8 +20,17 @@ public class PersonTest {
     @Autowired
     Person person;
 
+    /*@Autowired
+    Person person2;
+    @Autowired
+    Person person3;*/
+
+
     @Test
     public void testSampleService() {
+        System.out.println(person.hashCode());
+        /*System.out.println(person2.hashCode());
+        System.out.println(person3.hashCode());*/
         //given
         final int expectedResult = 2;
         //when

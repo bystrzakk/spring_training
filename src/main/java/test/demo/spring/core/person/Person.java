@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
+//@Scope(scopeName = "prototype")
 public class Person {
 
     private String name;

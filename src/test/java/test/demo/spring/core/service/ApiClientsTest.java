@@ -1,6 +1,7 @@
 package test.demo.spring.core.service;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ public class ApiClientsTest {
     private ApiClients apiClients;
 
     @Test
+    @Ignore
     public void testFetchExternalUsers() {
         final ResponseEntity<String> objectResponseEntity = apiClients.restCall();
         Assert.assertNotNull(objectResponseEntity);

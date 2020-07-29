@@ -21,7 +21,7 @@
     </build>
 
     <properties>
-        <spring.version>2.3.1.RELEASE</spring.version>
+        <spring.version>2.0.0.RELEASE</spring.version>
     </properties>
 
     <dependencies>
@@ -45,6 +45,20 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
             <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.9.2</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.9.2</version>
+            <scope>compile</scope>
         </dependency>
         <!-- Allow to expose REST endpoints from DB Repository  -->
         <!--<dependency>-->

@@ -23,10 +23,12 @@ public class BookConverter {
 
     public static BookDto convertToBookDto(Book book) {
         final AuthorDto authorDto = isNull(book.getAuthor()) ? null : AuthorConverter.convertToAuthorDto(book.getAuthor());
-        return new BookDto(book.getIsbn(), book.getName(), book.getPages(), book.getYear(), authorDto);
+        return new BookDto(book.getIsbn(), book.getName(), book.getPages(), book.getYear(),
+                authorDto, book.isAvailable(), BookReservationConverter.convertToBookReservationDto(book.getBookReservation()));
     }
 
     public static BookDto convertToBookWithoutAuthorDto(Book book) {
-        return new BookDto(book.getIsbn(), book.getName(), book.getPages(), book.getYear(), null);
+        return new BookDto(book.getIsbn(), book.getName(), book.getPages(), book.getYear(), null,
+                book.isAvailable(), BookReservationConverter.convertToBookReservationDto(book.getBookReservation()));
     }
 }

@@ -38,4 +38,13 @@ public class Customer {
     @OneToMany(mappedBy = "customer")
     private List<BookReservation> bookReservations;
 
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", phone=" + phone +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }

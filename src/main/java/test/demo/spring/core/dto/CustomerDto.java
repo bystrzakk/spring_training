@@ -2,19 +2,24 @@ package test.demo.spring.core.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class BookDto {
-    private String isbn;
-    private String name;
-    private int pages;
-    private int year;
-    private AuthorDto author;
-    private boolean available;
-    private BookReservationDto reservationDetails;
+public class CustomerDto {
+
+    private Long id;
+
+    private String firstName;
+
+    private String lastName;
+
+    private Long phone;
+
+    private String email;
 }

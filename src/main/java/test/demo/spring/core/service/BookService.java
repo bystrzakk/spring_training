@@ -59,6 +59,9 @@ public class BookService {
         final Optional<Author> author = authorRepository.findById(authorId);
         if (bookByIsbn.isPresent() && author.isPresent()) {
             final Book book = bookByIsbn.get();
+            if (book.getAuthor() != null) {
+                throw new InternalException("Author is already assigned to given book!");
+            }
             book.setAuthor(author.get());
             bookRepository.save(book);
         } else {

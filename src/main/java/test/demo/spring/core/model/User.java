@@ -16,13 +16,12 @@ import static javax.persistence.GenerationType.IDENTITY;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Car {
+public class User {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
-    private String brand;
-    private String model;
-    private int horsePower;
-    private int seats;
-    private String color;
+    private String name;
+    private String surname;
+    private int phone;
+    private String email;
 }

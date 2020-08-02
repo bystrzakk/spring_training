@@ -1,12 +1,14 @@
 package test.demo.spring.core.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 import test.demo.spring.core.converter.CarConverter;
 import test.demo.spring.core.dto.CarDto;
 import test.demo.spring.core.model.Car;
+import test.demo.spring.core.repository.CarRepository;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -14,12 +16,14 @@ import java.util.stream.Collectors;
 @Service
 public class CarService {
 
-    private final Car car1 = new Car(1L, "BMW", "e30", 250, 5, "Red");
-    private final Car car2 = new Car(2L, "Renault", "Megane", 280, 4, "Orange");
-    private final Car car3 = new Car(3L, "Mercedes", "C", 190, 5, "Red");
-    private final Car car4 = new Car(4L, "Honda", "Civic", 310, 5, "Champion White");
-    private final Car car5 = new Car(5L, "Cupra", "Leon", 265, 5, "Silver");
-    private final List<Car> carList = new ArrayList<>(Arrays.asList(car1, car2, car3, car4, car5));
+    private RestTemplate restTemplate;
+    private CarRepository carRepository;
+
+    @Autowired
+    public CarService(RestTemplate restTemplate, CarRepository carRepository) {
+        this.restTemplate = restTemplate;
+        this.carRepository = carRepository;
+    }
 
     public List<CarDto> getAllCars(String color) {
         Predicate<Car> filter = car -> {
@@ -28,6 +32,8 @@ public class CarService {
             }
             return true;
         };
+
+        final List<Car> carList = carRepository.findAll();
 
         return carList
                 .stream()
@@ -38,7 +44,12 @@ public class CarService {
 
     public void addNewCar(CarDto newCar) {
         final Car car = CarConverter.mapFromDto(newCar);
-        carList.add(car);
+        carRepository.save(car);
+    }
+
+    public void removeCar(Long id) {
+        carRepository.delete(getCarById(id));
+        System.out.println("Car removed with success!");
     }
 
     public CarDto getSingleCar(Long id) {
@@ -56,17 +67,16 @@ public class CarService {
             carById.setSeats(carDto.getSeats());
             carById.setHorsePower(carDto.getHorsePower());
         }
+        carRepository.save(carById);
     }
 
     private Car getCarById(Long id) {
-        for (Car car : carList) {
-            if (id.equals(car.getId())) {
-                return car;
-            }
-        }
-        System.out.println("No car with given id: " + id);
+        return carRepository.findById(id).get();
+    }
 
-        return null;
+    public void testExternalService() {
+        final ResponseEntity<String> forEntity = restTemplate.getForEntity("http://localhost:9090/api/test", String.class);
+        System.out.println("External service returned: " + forEntity.getBody());
     }
 
 

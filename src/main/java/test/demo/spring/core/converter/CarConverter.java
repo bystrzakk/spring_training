@@ -18,7 +18,6 @@ public class CarConverter {
 
     public static Car mapFromDto(CarDto car) {
         return Car.builder()
-                .id(car.getId())
                 .brand(car.getBrand())
                 .model(car.getModel())
                 .color(car.getColor())
